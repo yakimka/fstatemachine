@@ -1,2 +1,4 @@
-# fstatemachine
+fstatemachine
+=============
+
 Python finite state machine package
