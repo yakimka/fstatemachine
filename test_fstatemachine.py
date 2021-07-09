@@ -65,7 +65,11 @@ class TestTransitionsChecker(unittest.TestCase):
 
         for current, new in fixture:
             with self.subTest(current=current, new=new):
-                checker = fstatemachine.StateMachine(current, self.states, transitions)
+                checker = fstatemachine.StateMachine(
+                    current=current,
+                    states=self.states,
+                    transitions=transitions
+                )
                 checker.check(new)
 
     def test_check_forbidden_state_changes(self):
@@ -83,18 +87,21 @@ class TestTransitionsChecker(unittest.TestCase):
         for current, new in fixture:
             with self.subTest(current=current, new=new):
                 with self.assertRaises(fstatemachine.WrongTransition) as e:
-                    checker = fstatemachine.StateMachine(current, self.states, transitions)
+                    checker = fstatemachine.StateMachine(
+                        current=current,
+                        states=self.states,
+                        transitions=transitions
+                    )
                     checker.check(new)
-                self.assertEqual(new, str(e.exception))
+                self.assertEqual(f'from {current} to {new}', str(e.exception))
 
     def test_check_for_unknown_state(self):
         with self.assertRaises(ValueError) as e:
-            checker = fstatemachine.StateMachine('new', self.states, {})
+            checker = fstatemachine.StateMachine(current='new', states=self.states, transitions={})
             checker.check('not_known')
         self.assertEqual('Unknown state: not_known', str(e.exception))
 
-    @unittest.skip('temporary')
     def test_pass_unknown_state_as_current_on_init(self):
         with self.assertRaises(ValueError) as e:
-            fstatemachine.StateMachine('not_known', self.states, {})
+            fstatemachine.StateMachine(current='not_known', states=self.states, transitions={})
         self.assertEqual('Unknown state: not_known', str(e.exception))
