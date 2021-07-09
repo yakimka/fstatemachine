@@ -17,3 +17,6 @@ be found there.
 .. |docs| image:: https://readthedocs.org/projects/fstatemachine/badge/?version=latest
     :target: https://fstatemachine.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
+.. image:: https://img.shields.io/pypi/v/fstatemachine.svg
+   :target: https://pypi.org/project/fstatemachine/
+   :alt: fstatemachine on PyPI
