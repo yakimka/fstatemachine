@@ -1,11 +1,15 @@
 __version__ = '1.0.0'
 
+from typing import Dict, Hashable, Iterable, List
+
 
 class WrongTransition(Exception):
     """Wrong Transition Error class"""
 
 
 empty = object()
+
+Transitions = Dict[Hashable, List[Hashable]]
 
 
 class StateMachine:
@@ -17,7 +21,8 @@ class StateMachine:
     :param transitions: dict of transitions between states
         where key is initial state and value is list of legit states for transitions
     """
-    def __init__(self, *, current, states, transitions: dict):
+
+    def __init__(self, *, current: Hashable, states: Iterable, transitions: Transitions):
         self.states = list(states)
         self.transitions = parse_transitions(self.states, transitions)
         self.current = current
@@ -51,7 +56,7 @@ class StateMachine:
             raise WrongTransition(f'from {self.current} to {new}')
 
 
-def parse_transitions(states: list, transitions_schema):
+def parse_transitions(states: list, transitions_schema: dict) -> Transitions:
     transitions = {}
     known_states = set(states)
     for from_state, to_states in transitions_schema.items():
