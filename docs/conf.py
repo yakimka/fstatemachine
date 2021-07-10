@@ -34,6 +34,7 @@ release = fstatemachine_version
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.intersphinx',
     'sphinx_autodoc_typehints',
 ]
 

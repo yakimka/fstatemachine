@@ -3,7 +3,7 @@ Python finite state machine package
 
 |pypi| |ci| |coverage| |docs|
 
-Simple finite state machine implementation in Python
+Simple finite state machine implementation written in Python
 
 Online documentation is at https://fstatemachine.readthedocs.io/.
 

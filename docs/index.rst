@@ -6,6 +6,9 @@
 Welcome to fstatemachine's documentation!
 =========================================
 
+fstatemachine is a simple finite state machine implementation written in Python.
+It supports python >= 3.6
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
