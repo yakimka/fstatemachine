@@ -1,3 +1,4 @@
+from contextlib import suppress
 from typing import Dict, Hashable, Iterable, List, Union
 
 __version__ = '1.0.0'
@@ -7,9 +8,10 @@ class WrongTransition(Exception):
     """Wrong Transition Error class"""
 
 
-empty = object()
-
+Schema = Dict[Hashable, Union[List[Hashable], str, None]]
 Transitions = Dict[Hashable, List[Hashable]]
+
+empty = object()
 
 
 class StateMachine:
@@ -17,7 +19,8 @@ class StateMachine:
     StateMachine class
 
     :param current: initial state of machine
-    :param states: list of available states
+    :param states: available states.
+        Can be list, dict or list with tuples with state and alias
     :param transitions: transitions between states
         where key is initial state and value is list of legit states for transition.
         State can be any hashable object.
@@ -30,10 +33,21 @@ class StateMachine:
     :raises: :py:exc:`ValueError`
     """
 
-    def __init__(self, *, current: Hashable, states: Iterable, transitions: Transitions):
-        self.states = list(states)
+    def __init__(self, *, current: Hashable, states: Iterable, transitions: Schema):
+        states, aliases = self._parse_states(states)
+        self.states = states
+        self.aliases = aliases
         self.transitions = parse_transitions(self.states, transitions)
         self.current = current
+
+    @classmethod
+    def _parse_states(cls, states):
+        aliases = {}
+        with suppress(ValueError, TypeError):
+            aliases = dict(states)
+        states = list(aliases or states)
+
+        return states, aliases
 
     @property
     def current(self):
@@ -61,10 +75,9 @@ class StateMachine:
             return
 
         if new not in self.transitions.get(self.current, []):
-            raise WrongTransition(f'from {self.current} to {new}')
-
-
-Schema = Dict[Hashable, List[Union[Hashable, str, None]]]
+            current_state = self.aliases.get(self.current, self.current)
+            new_state = self.aliases.get(new, new)
+            raise WrongTransition(f'from {current_state} to {new_state}')
 
 
 def parse_transitions(states: list, transitions_schema: Schema) -> Transitions:

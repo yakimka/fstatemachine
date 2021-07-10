@@ -45,6 +45,9 @@ Quickstart
 
     # Define some states, order is not important
     order_states = ['pending', 'awaiting_payment', 'shipped', 'cancelled', 'completed']
+    # Or with aliases
+    # order_states = {1: 'pending', 2: 'awaiting_payment', 3: 'shipped', 4 : 'cancelled', 5: 'completed'}
+    # order_states = [(1, 'pending'), (2, 'awaiting_payment'), (3, 'shipped'), (4, 'cancelled'), (5, 'completed')]
 
     # Define transitions
     order_transitions = {
