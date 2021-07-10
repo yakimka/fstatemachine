@@ -7,9 +7,10 @@ class WrongTransition(Exception):
     """Wrong Transition Error class"""
 
 
-empty = object()
-
+Schema = Dict[Hashable, List[Union[Hashable, str, None]]]
 Transitions = Dict[Hashable, List[Hashable]]
+
+empty = object()
 
 
 class StateMachine:
@@ -30,7 +31,7 @@ class StateMachine:
     :raises: :py:exc:`ValueError`
     """
 
-    def __init__(self, *, current: Hashable, states: Iterable, transitions: Transitions):
+    def __init__(self, *, current: Hashable, states: Iterable, transitions: Schema):
         self.states = list(states)
         self.transitions = parse_transitions(self.states, transitions)
         self.current = current
@@ -62,9 +63,6 @@ class StateMachine:
 
         if new not in self.transitions.get(self.current, []):
             raise WrongTransition(f'from {self.current} to {new}')
-
-
-Schema = Dict[Hashable, List[Union[Hashable, str, None]]]
 
 
 def parse_transitions(states: list, transitions_schema: Schema) -> Transitions:
