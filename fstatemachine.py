@@ -1,7 +1,7 @@
 from contextlib import suppress
 from typing import Dict, Hashable, Iterable, List, Union
 
-__version__ = '1.0.0'
+__version__ = '1.1.0'
 
 
 class WrongTransition(Exception):
