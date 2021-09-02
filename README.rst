@@ -1,7 +1,7 @@
 Python finite state machine package
 ===================================
 
-|pypi| |ci| |coverage| |docs|
+|pypi| |downloads| |ci| |coverage| |docs|
 
 Simple finite state machine implementation written in Python
 
@@ -20,3 +20,6 @@ be found there.
 .. |pypi| image:: https://img.shields.io/pypi/v/fstatemachine.svg
    :target: https://pypi.org/project/fstatemachine/
    :alt: fstatemachine on PyPI
+.. |downloads| image:: https://img.shields.io/pypi/dm/fstatemachine
+   :target: https://pypi.org/project/fstatemachine/
+   :alt: PyPI - Downloads
