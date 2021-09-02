@@ -21,5 +21,5 @@ be found there.
    :target: https://pypi.org/project/fstatemachine/
    :alt: fstatemachine on PyPI
 .. |downloads| image:: https://img.shields.io/pypi/dm/fstatemachine
-   :target: https://pypi.org/project/fstatemachine/
+   :target: https://pypistats.org/packages/fstatemachine
    :alt: PyPI - Downloads
