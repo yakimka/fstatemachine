@@ -20,6 +20,6 @@ be found there.
 .. |pypi| image:: https://img.shields.io/pypi/v/fstatemachine.svg
    :target: https://pypi.org/project/fstatemachine/
    :alt: fstatemachine on PyPI
-.. |downloads| image:: https://img.shields.io/pypi/dm/fstatemachine
-   :target: https://pypistats.org/packages/fstatemachine
+.. |downloads| image:: https://static.pepy.tech/personalized-badge/fstatemachine?period=total&units=none&left_color=grey&right_color=blue&left_text=downloads
+   :target: https://pepy.tech/project/fstatemachine
    :alt: PyPI - Downloads
